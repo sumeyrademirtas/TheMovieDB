@@ -12,6 +12,7 @@ class MovieTvListVC: UIViewController {
 
     private var movieViewModel = MovieListViewModel()
     private var tvSeriesViewModel = TvSeriesListViewModel()
+    
 
     // TableView to display movies and TV series
     private let tableView: UITableView = {
@@ -93,14 +94,31 @@ extension MovieTvListVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Movies" : "TV Series"
     }
-    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 {
-            print("Selected Movie: \(movieViewModel.movies[indexPath.row].title)")
-        } else {
-            print("Selected TV Series: \(tvSeriesViewModel.tvSeries[indexPath.row].name)")
-        }
+        
+        let detailVC = DetailsVC()
+        
+            if indexPath.section == 0 {
+                print("Selected Movie: \(movieViewModel.movies[indexPath.row].title)")
+                
+                let selectedMovie = movieViewModel.movies[indexPath.row]
+                // DetailsVC'ye filmi geçeriz. Burada, mediaType enum'unun movie case'ini kullanarak,
+                // DetailsVC'deki configure fonksiyonuna film verisini gönderiyoruz.
+                detailVC.configure(with: .movie(selectedMovie))
+
+            
+            } else {
+                print("Selected TV Series: \(tvSeriesViewModel.tvSeries[indexPath.row].name)")
+                
+                let selectedTvSeries = tvSeriesViewModel.tvSeries[indexPath.row]
+                
+                // DetailsVC'ye TV dizisini geçeriz. Burada, mediaType enum'unun tvSeries case'ini kullanarak,
+                // DetailsVC'deki configure fonksiyonuna TV dizisi verisini gönderiyoruz.
+                detailVC.configure(with: .tvSeries(selectedTvSeries))
+            }
+
+            navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -14,7 +14,7 @@ struct TvSeriesResponseModel: Codable {
     let total_results: Int
 }
 
-struct TvSeries: Codable {
+struct TvSeries: Codable, Equatable {
     let adult: Bool
     let backdropPath: String?
     let genreIds: [Int]
