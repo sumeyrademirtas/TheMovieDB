@@ -11,7 +11,7 @@ import Foundation
 final class NetworkConstants {
     static var baseURL: String = ENV.API_HOST
 }
-
+ 
 
 enum HTTPHeaderField: String {
     case authentication = "Authentication"
