@@ -10,12 +10,25 @@ import Foundation
 class NetworkRouter {
     struct fetchMovies: NetworkRequest {
         
-        typealias ReturnType = [MovieResponseModel]
-        var path: String = "movie/popular"
+        typealias ReturnType = MovieResponseModel
+        var path: String = "/movie/popular"
         var method: HttpMethod = .get
         var body: [String : Any]?
         
     }
+    
+    
+    struct fetchTvSeries: NetworkRequest {
+        
+        typealias ReturnType = TvSeriesResponseModel
+        var path: String = "/tv/popular"
+        var method: HttpMethod = .get
+        var body: [String : Any]?
+        
+    }
+    
+    
+    
     
     // you can add a new struct for each request now
 //    struct createPost: NetworkRequest {
