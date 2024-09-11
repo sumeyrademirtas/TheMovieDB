@@ -11,6 +11,7 @@ import UIKit
 
 final class TvSeriesDetailView: UIView {
     // MARK: - Properties
+
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let nameLabel = UILabel()
@@ -48,25 +49,26 @@ final class TvSeriesDetailView: UIView {
     }
     
     // MARK: - ScrollView Setup
-       private func setupScrollView() {
-           addSubview(scrollView)
-           scrollView.addSubview(contentView)
-           scrollView.translatesAutoresizingMaskIntoConstraints = false
-           contentView.translatesAutoresizingMaskIntoConstraints = false
+
+    private func setupScrollView() {
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
            
-           NSLayoutConstraint.activate([
-               scrollView.topAnchor.constraint(equalTo: self.topAnchor),
-               scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-               scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-               scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
                
-               contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-               contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-               contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-               contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-               contentView.widthAnchor.constraint(equalTo: self.widthAnchor)
-           ])
-       }
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: widthAnchor)
+        ])
+    }
     
     // MARK: - UI Setup
 
@@ -125,7 +127,6 @@ final class TvSeriesDetailView: UIView {
         ratingLabel.text = viewModel.tvvoteAverage
         overviewLabel.text = viewModel.tvoverview
 
-        
         // Posteri URL'den yüklemek için bir fonksiyon çağırıyoruz
         if let posterPath = viewModel.tvposterPath {
             loadImage(from: "https://image.tmdb.org/t/p/w500\(posterPath)")
@@ -133,14 +134,15 @@ final class TvSeriesDetailView: UIView {
     }
     
     // MARK: - Image Loading
-       private func loadImage(from urlString: String) {
-           guard let url = URL(string: urlString) else { return }
-           let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-               guard let data = data, error == nil, let image = UIImage(data: data) else { return }
-               DispatchQueue.main.async {
-                   self?.posterImageView.image = image
-               }
-           }
-           task.resume()
-       }
+
+    private func loadImage(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let data = data, error == nil, let image = UIImage(data: data) else { return }
+            DispatchQueue.main.async {
+                self?.posterImageView.image = image
+            }
+        }
+        task.resume()
+    }
 }

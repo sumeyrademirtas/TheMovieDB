@@ -38,6 +38,9 @@
 		812CF89E2C905CA4007D3B61 /* TvSeriesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF89D2C905CA4007D3B61 /* TvSeriesDetailView.swift */; };
 		812CF8A02C905EFE007D3B61 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF89F2C905EFE007D3B61 /* DetailsVC.swift */; };
 		812CF8A32C90B924007D3B61 /* FavouriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8A22C90B924007D3B61 /* FavouriteManager.swift */; };
+		812CF8A52C9185A1007D3B61 /* ListwithPosterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8A42C9185A1007D3B61 /* ListwithPosterVC.swift */; };
+		812CF8A72C918893007D3B61 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8A62C918893007D3B61 /* PosterCollectionViewCell.swift */; };
+		812CF8A92C918906007D3B61 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8A82C918906007D3B61 /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,9 @@
 		812CF89D2C905CA4007D3B61 /* TvSeriesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvSeriesDetailView.swift; sourceTree = "<group>"; };
 		812CF89F2C905EFE007D3B61 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		812CF8A22C90B924007D3B61 /* FavouriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteManager.swift; sourceTree = "<group>"; };
+		812CF8A42C9185A1007D3B61 /* ListwithPosterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListwithPosterVC.swift; sourceTree = "<group>"; };
+		812CF8A62C918893007D3B61 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
+		812CF8A82C918906007D3B61 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,7 @@
 				812CF8792C8F28F9007D3B61 /* MovieTvListVC.swift */,
 				812CF87B2C8F3406007D3B61 /* FavouriteListVC.swift */,
 				812CF89F2C905EFE007D3B61 /* DetailsVC.swift */,
+				812CF8A42C9185A1007D3B61 /* ListwithPosterVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -202,6 +209,8 @@
 				812CF8952C9039D6007D3B61 /* TvSeriesCell.swift */,
 				812CF89B2C905C96007D3B61 /* MovieDetailView.swift */,
 				812CF89D2C905CA4007D3B61 /* TvSeriesDetailView.swift */,
+				812CF8A62C918893007D3B61 /* PosterCollectionViewCell.swift */,
+				812CF8A82C918906007D3B61 /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,6 +303,7 @@
 				812CF88E2C9035BB007D3B61 /* TvSeriesViewModel.swift in Sources */,
 				812CF86F2C8F1401007D3B61 /* Utilities.swift in Sources */,
 				812CF8602C8F0C06007D3B61 /* NetworkConstants.swift in Sources */,
+				812CF8A72C918893007D3B61 /* PosterCollectionViewCell.swift in Sources */,
 				812CF87A2C8F28F9007D3B61 /* MovieTvListVC.swift in Sources */,
 				812CF8692C8F0EC4007D3B61 /* Encodable+Extension.swift in Sources */,
 				812CF89C2C905C96007D3B61 /* MovieDetailView.swift in Sources */,
@@ -303,6 +313,7 @@
 				812CF85E2C8F0BDB007D3B61 /* NetworkClient.swift in Sources */,
 				812CF8472C8ECE93007D3B61 /* AppDelegate.swift in Sources */,
 				812CF8492C8ECE93007D3B61 /* SceneDelegate.swift in Sources */,
+				812CF8A92C918906007D3B61 /* HeaderView.swift in Sources */,
 				812CF87C2C8F3406007D3B61 /* FavouriteListVC.swift in Sources */,
 				812CF8852C8F39EC007D3B61 /* MovieViewModel.swift in Sources */,
 				812CF89A2C905C2F007D3B61 /* ContentType.swift in Sources */,
@@ -312,6 +323,7 @@
 				812CF8782C8F28AE007D3B61 /* TabBarController.swift in Sources */,
 				812CF8902C90361F007D3B61 /* TvSeries.swift in Sources */,
 				812CF8822C8F3934007D3B61 /* Movie.swift in Sources */,
+				812CF8A52C9185A1007D3B61 /* ListwithPosterVC.swift in Sources */,
 				812CF8922C9037A1007D3B61 /* TvSeriesListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
