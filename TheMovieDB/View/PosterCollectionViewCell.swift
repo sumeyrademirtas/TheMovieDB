@@ -19,6 +19,14 @@ class PosterCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(posterImageView)
@@ -58,4 +66,10 @@ class PosterCollectionViewCell: UICollectionViewCell {
         }
         task.resume()
     }
+}
+
+
+// Hücre boyutunu ayarlıyoruz (120 genişlik, 200 yükseklik)
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: 120, height: 200) // Hücre genişliği ve yüksekliği
 }
