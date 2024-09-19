@@ -60,14 +60,16 @@ extension NetworkRequest {
         guard var urlComponents = URLComponents(string: baseURL) else { return nil }
         // URL'nin yolunu (path) ayarlar
         urlComponents.path = "\(urlComponents.path)\(path)"
-        
-        // API key'i query parametresi olarak ekle
-            var queryItems = urlComponents.queryItems ?? []
-            queryItems.append(URLQueryItem(name: "api_key", value: ENV.API_KEY))
-            urlComponents.queryItems = queryItems
-        
 
-        
+        // API key'i query parametresi olarak ekle
+        var queryItems = urlComponents.queryItems ?? []
+        queryItems.append(URLQueryItem(name: "api_key", value: ENV.API_KEY))
+        // Eğer SESSION_ID boş değilse, onu da query'e ekle
+        if !ENV.SESSION_ID.isEmpty {
+            queryItems.append(URLQueryItem(name: "session_id", value: ENV.SESSION_ID))
+        }
+        urlComponents.queryItems = queryItems
+
         // Nihai URL'yi oluşturur
         guard let finalURL = urlComponents.url else { return nil }
         // URLRequest nesnesi oluşturur

@@ -26,32 +26,68 @@ final class DetailsVC: UIViewController {
     }
     
     private func setupFavoriteButton() {
-           guard let mediaType = mediaType else { return }
-           let isFavourite = FavouriteManager.shared.isFavourite(mediaType)
-           let buttonIcon = isFavourite ? "heart.fill" : "heart"
-           let favoriteButton = UIBarButtonItem(
-               image: UIImage(systemName: buttonIcon),
-               style: .plain,
-               target: self,
-               action: #selector(favoriteButtonTapped)
-           )
-           navigationItem.rightBarButtonItem = favoriteButton
-       }
-    
-    @objc private func favoriteButtonTapped() {
-            guard let mediaType = mediaType else { return }
-            
-            if FavouriteManager.shared.isFavourite(mediaType) {
-                FavouriteManager.shared.removeFromFavourites(mediaType)
-                NotificationCenter.default.post(name: NSNotification.Name("favouriteUpdated"), object: nil)
-            } else {
-                FavouriteManager.shared.addToFavourites(mediaType)
-                NotificationCenter.default.post(name: NSNotification.Name("favouriteUpdated"), object: nil)
+        guard let mediaType = mediaType else { return }
+        
+        FavouriteManager.shared.isFavourite(mediaType) { [weak self] isFavourite in
+            DispatchQueue.main.async {
+                let buttonIcon = isFavourite ? "heart.fill" : "heart"
+                let favoriteButton = UIBarButtonItem(
+                    image: UIImage(systemName: buttonIcon),
+                    style: .plain,
+                    target: self,
+                    action: #selector(self?.favoriteButtonTapped)
+                )
+                self?.navigationItem.rightBarButtonItem = favoriteButton
             }
-            
-            // Favori butonunu güncelle
-            setupFavoriteButton()
         }
+    }
+
+    @objc private func favoriteButtonTapped() {
+        guard let mediaType = mediaType else { return }
+
+        // Asenkron favori kontrolü
+        FavouriteManager.shared.isFavourite(mediaType) { [weak self] isFavourite in
+            DispatchQueue.main.async {
+                if isFavourite {
+                    // Eğer favoriyse, favorilerden çıkar
+                    switch mediaType {
+                    case .movie(let movie):
+                        FavouriteManager.shared.removeFromFavourites(mediaType: "movie", mediaId: movie.id) { success in
+                            if success {
+                                NotificationCenter.default.post(name: NSNotification.Name("favouriteUpdated"), object: nil)
+                                self?.setupFavoriteButton()
+                            }
+                        }
+                    case .tvSeries(let tvSeries):
+                        FavouriteManager.shared.removeFromFavourites(mediaType: "tv", mediaId: tvSeries.id) { success in
+                            if success {
+                                NotificationCenter.default.post(name: NSNotification.Name("favouriteUpdated"), object: nil)
+                                self?.setupFavoriteButton()
+                            }
+                        }
+                    }
+                } else {
+                    // Eğer favori değilse, favorilere ekle
+                    switch mediaType {
+                    case .movie(let movie):
+                        FavouriteManager.shared.addToFavourites(mediaType: "movie", mediaId: movie.id) { success in
+                            if success {
+                                NotificationCenter.default.post(name: NSNotification.Name("favouriteUpdated"), object: nil)
+                                self?.setupFavoriteButton()
+                            }
+                        }
+                    case .tvSeries(let tvSeries):
+                        FavouriteManager.shared.addToFavourites(mediaType: "tv", mediaId: tvSeries.id) { success in
+                            if success {
+                                NotificationCenter.default.post(name: NSNotification.Name("favouriteUpdated"), object: nil)
+                                self?.setupFavoriteButton()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     private func setupView() {
         // Default olarak her iki view'i gizliyoruz

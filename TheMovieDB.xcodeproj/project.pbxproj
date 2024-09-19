@@ -41,6 +41,9 @@
 		812CF8A52C9185A1007D3B61 /* ListwithPosterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8A42C9185A1007D3B61 /* ListwithPosterVC.swift */; };
 		812CF8A72C918893007D3B61 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8A62C918893007D3B61 /* PosterCollectionViewCell.swift */; };
 		812CF8AB2C920AA4007D3B61 /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8AA2C920AA4007D3B61 /* CollectionViewTableViewCell.swift */; };
+		812CF8AD2C9316C5007D3B61 /* FavoriteMoviesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8AC2C9316C5007D3B61 /* FavoriteMoviesResponseModel.swift */; };
+		812CF8AF2C9316E8007D3B61 /* FavoriteTvSeriesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8AE2C9316E8007D3B61 /* FavoriteTvSeriesResponseModel.swift */; };
+		812CF8B12C957B83007D3B61 /* AddFavoriteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CF8B02C957B83007D3B61 /* AddFavoriteResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +83,9 @@
 		812CF8A42C9185A1007D3B61 /* ListwithPosterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListwithPosterVC.swift; sourceTree = "<group>"; };
 		812CF8A62C918893007D3B61 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		812CF8AA2C920AA4007D3B61 /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
+		812CF8AC2C9316C5007D3B61 /* FavoriteMoviesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesResponseModel.swift; sourceTree = "<group>"; };
+		812CF8AE2C9316E8007D3B61 /* FavoriteTvSeriesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTvSeriesResponseModel.swift; sourceTree = "<group>"; };
+		812CF8B02C957B83007D3B61 /* AddFavoriteResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,9 @@
 				812CF88D2C9035BB007D3B61 /* TvSeriesViewModel.swift */,
 				812CF8912C9037A1007D3B61 /* TvSeriesListViewModel.swift */,
 				812CF8972C9059A7007D3B61 /* DetailViewModel.swift */,
+				812CF8AC2C9316C5007D3B61 /* FavoriteMoviesResponseModel.swift */,
+				812CF8AE2C9316E8007D3B61 /* FavoriteTvSeriesResponseModel.swift */,
+				812CF8B02C957B83007D3B61 /* AddFavoriteResponseModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -294,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				812CF8AF2C9316E8007D3B61 /* FavoriteTvSeriesResponseModel.swift in Sources */,
 				812CF8962C9039D6007D3B61 /* TvSeriesCell.swift in Sources */,
 				812CF8622C8F0D48007D3B61 /* NetworkRequest.swift in Sources */,
 				812CF8872C8F3C04007D3B61 /* MovieListViewModel.swift in Sources */,
@@ -319,9 +329,11 @@
 				812CF89A2C905C2F007D3B61 /* ContentType.swift in Sources */,
 				812CF85C2C8F0B73007D3B61 /* NetworkDispatcher.swift in Sources */,
 				812CF8662C8F0DE8007D3B61 /* NetworkRouter.swift in Sources */,
+				812CF8AD2C9316C5007D3B61 /* FavoriteMoviesResponseModel.swift in Sources */,
 				812CF8A02C905EFE007D3B61 /* DetailsVC.swift in Sources */,
 				812CF8782C8F28AE007D3B61 /* TabBarController.swift in Sources */,
 				812CF8902C90361F007D3B61 /* TvSeries.swift in Sources */,
+				812CF8B12C957B83007D3B61 /* AddFavoriteResponseModel.swift in Sources */,
 				812CF8822C8F3934007D3B61 /* Movie.swift in Sources */,
 				812CF8A52C9185A1007D3B61 /* ListwithPosterVC.swift in Sources */,
 				812CF8922C9037A1007D3B61 /* TvSeriesListViewModel.swift in Sources */,

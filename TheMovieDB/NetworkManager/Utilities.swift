@@ -23,6 +23,8 @@ var ENV: ApiKeyable {
 protocol ApiKeyable {
     var API_KEY: String { get } // API anahtarını almak için bir özellik
     var API_HOST: String { get } // API hostunu almak için bir özellik
+    var SESSION_ID: String { get }
+    var ACCOUNT_ID: String { get }
 }
 
 /// BaseEnv sınıfı, plist dosyasını okumak için temel işlevselliği içerir.
@@ -64,5 +66,13 @@ class ConfigEnv: BaseEnv, ApiKeyable {
     // API_HOST özelliği, plist dosyasındaki API_HOST anahtarını okuyarak döner
     var API_HOST: String {
         dict.object(forKey: Key.API_HOST.rawValue) as? String ?? "" // Eğer anahtar bulunamazsa boş bir string döner
+    }
+
+    var SESSION_ID: String {
+        dict.object(forKey: "SESSION_ID") as? String ?? ""
+    }
+
+    var ACCOUNT_ID: String {
+        dict.object(forKey: "ACCOUNT_ID") as? String ?? ""
     }
 }
