@@ -1,9 +1,9 @@
  # Swift UIKit TheMovieDB 
 ## Demo
 
-<img src="https://github.com/user-attachments/assets/1b20e3d8-c5b0-480a-9e8d-6e6f92ab6252" alt="TheMovieDB_MovieTvList" width="225"  height="495">
-<img src="https://github.com/user-attachments/assets/ed83bef6-7f3e-4a05-91a2-5d38a6d954b8" alt="TheMovieDB_Favourites" width="225"  height="495">
-<img src="https://github.com/user-attachments/assets/2b532420-cbea-463e-bec0-b25f189d4b01" alt="TheMovieDB_Posters" width="225"  height="495">
+<img src="https://github.com/user-attachments/assets/1b20e3d8-c5b0-480a-9e8d-6e6f92ab6252" alt="TheMovieDB_MovieTvList" width="247.5"  height="544.5">
+<img src="https://github.com/user-attachments/assets/ed83bef6-7f3e-4a05-91a2-5d38a6d954b8" alt="TheMovieDB_Favourites" width="247.5"  height="544.5">
+<img src="https://github.com/user-attachments/assets/2b532420-cbea-463e-bec0-b25f189d4b01" alt="TheMovieDB_Posters" width="247.5"  height="544.5">
 
 
 ## Features
