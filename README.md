@@ -27,12 +27,12 @@
 
 ## Design
 
-The app has four key areas
-	1.	Movies List
-	•	Displays a list of popular movies with their posters.
-	2.	TV Series List
-	•	Displays a list of popular TV series along with their posters.
-	3.	Movie/TV Series Details
-	•	Provides detailed information about a selected movie or TV series, including title, release date, rating, and overview.
-	4.	Favorites
-	•	Displays a list of movies and TV series that users have added to their favorites, allowing them to manage their favorite content.
+### The app has four key areas
+1.	Movies List
+- Displays a list of popular movies with their posters.
+2.	TV Series List
+- Displays a list of popular TV series along with their posters.
+3.	Movie/TV Series Details
+- Provides detailed information about a selected movie or TV series, including title, release date, rating, and overview.
+4.	Favorites
+- Displays a list of movies and TV series that users have added to their favorites, allowing them to manage their favorite content.
