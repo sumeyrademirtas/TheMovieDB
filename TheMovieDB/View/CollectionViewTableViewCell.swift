@@ -7,13 +7,16 @@
 
 import UIKit
 
+// UITableViewCell sınıfından türeyen CollectionViewTableViewCell, bir TableView hücresinde CollectionView kullanmak için oluşturulmuş bir özel hücre sınıfıdır.
 class CollectionViewTableViewCell: UITableViewCell {
     static let identifier = "CollectionViewTableViewCell"
     
     private var movieViewModel: MovieListViewModel? = nil
     private var tvSeriesViewModel: TvSeriesListViewModel? = nil
     
+    // Yatay kaydırılabilir CollectionView
     private let collectionView: UICollectionView = {
+        // UICollectionViewFlowLayout ile öğelerin boyutu ve kaydırma yönü ayarlanıyor
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 140, height: 200)
         layout.scrollDirection = .horizontal
@@ -53,35 +56,32 @@ class CollectionViewTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // CollectionView'ın hücre içindeki çerçevesi ayarlanıyor
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
     }
-    
-    
     
     // MARK: - Configure
     
     // CollectionViewTableViewCell içinde
     public func configure(with movieViewModel: MovieListViewModel?, tvSeriesViewModel: TvSeriesListViewModel?) {
         if let movieViewModel = movieViewModel {
-                self.movieViewModel = movieViewModel
-                self.tvSeriesViewModel = nil // TV serisini temizleyelim, sadece filmler gösterilecek
-            } else if let tvSeriesViewModel = tvSeriesViewModel {
-                self.tvSeriesViewModel = tvSeriesViewModel
-                self.movieViewModel = nil // Filmleri temizleyelim, sadece TV serileri gösterilecek
-            }
+            self.movieViewModel = movieViewModel
+            self.tvSeriesViewModel = nil // TV serisini temizleyelim, sadece filmler gösterilecek
+        } else if let tvSeriesViewModel = tvSeriesViewModel {
+            self.tvSeriesViewModel = tvSeriesViewModel
+            self.movieViewModel = nil // Filmleri temizleyelim, sadece TV serileri gösterilecek
+        }
         collectionView.reloadData() // CollectionView'ı yeni verilerle yeniliyoruz
     }
-    
-
     
     public func configure(with viewModel: DetailViewModel) {
         // Posteri URL'den yüklemek için bir fonksiyon çağırıyoruz
         if let posterPath = viewModel.tvposterPath ?? viewModel.movieposterPath {
             print("Poster path: \(posterPath)")
             loadImage(from: "https://image.tmdb.org/t/p/w500\(posterPath)")
-            collectionView.reloadData() 
+            collectionView.reloadData()
         } else {
             print("Poster path is nil")
         }
@@ -89,31 +89,29 @@ class CollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Image Loading
     
-
-        private func loadImage(from urlString: String) {
-            print("Loading image from URL: \(urlString)") // URL'yi kontrol edin
-            guard let url = URL(string: urlString) else { return }
-            print("Invalid URL: \(urlString)")
-            let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-                if let error = error {
-                    print("Error loading image: \(error)")
-                    return
-                }
-                guard let data = data, let image = UIImage(data: data) else {
-                    print("Invalid image data")
-                    return
-                }
-                DispatchQueue.main.async {
-                    self?.posterImageView.image = image
-                }
+    private func loadImage(from urlString: String) {
+        print("Loading image from URL: \(urlString)") // URL'yi kontrol edin
+        guard let url = URL(string: urlString) else { return }
+        print("Invalid URL: \(urlString)")
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            if let error = error {
+                print("Error loading image: \(error)")
+                return
             }
-            task.resume()
+            guard let data = data, let image = UIImage(data: data) else {
+                print("Invalid image data")
+                return
+            }
+            DispatchQueue.main.async {
+                self?.posterImageView.image = image
+            }
         }
+        task.resume()
+    }
 }
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    //her hücre (cell) için hangi içeriğin gösterileceğini belirler
+    // her hücre (cell) için hangi içeriğin gösterileceğini belirler
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Koleksiyon görünümünden tekrar kullanılabilir bir hücre alıyoruz.
         // PosterCollectionViewCell tipinde bir hücre döndürülmezse, boş bir UICollectionViewCell döndürülür.
@@ -123,28 +121,26 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         }
         
         if let movieViewModel = movieViewModel {
-                let movie = movieViewModel.movies[indexPath.row]
-                let movieDetailViewModel = DetailViewModel(movie: movie)
-                cell.configure(with: movieDetailViewModel) // Filmleri göster
-            } else if let tvSeriesViewModel = tvSeriesViewModel {
-                let tvSeries = tvSeriesViewModel.tvSeries[indexPath.row]
-                let tvSeriesDetailViewModel = DetailViewModel(tvserie: tvSeries)
-                cell.configure(with: tvSeriesDetailViewModel) // TV serilerini göster
-            }
+            let movie = movieViewModel.movies[indexPath.row]
+            let movieDetailViewModel = DetailViewModel(movie: movie)
+            cell.configure(with: movieDetailViewModel) // Filmleri göster
+        } else if let tvSeriesViewModel = tvSeriesViewModel {
+            let tvSeries = tvSeriesViewModel.tvSeries[indexPath.row]
+            let tvSeriesDetailViewModel = DetailViewModel(tvserie: tvSeries)
+            cell.configure(with: tvSeriesDetailViewModel) // TV serilerini göster
+        }
         
         // Yapılandırılmış hücreyi geri döndürerek koleksiyon görünümüne eklenmesini sağlıyoruz.
         return cell
     }
     
-    //her bir section (bölüm) için kaç adet öğe (item) olduğunu belirtir
+    // her bir section (bölüm) için kaç adet öğe (item) olduğunu belirtir
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let movieViewModel = movieViewModel {
-                return movieViewModel.movies.count
-            } else if let tvSeriesViewModel = tvSeriesViewModel {
-                return tvSeriesViewModel.tvSeries.count
-            }
-            return 0
-        
-
+            return movieViewModel.movies.count
+        } else if let tvSeriesViewModel = tvSeriesViewModel {
+            return tvSeriesViewModel.tvSeries.count
+        }
+        return 0
     }
 }

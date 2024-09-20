@@ -36,7 +36,6 @@ final class ListwithPosterVC: UIViewController {
         movieViewModel.didFetchMovies = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
-                
             }
         }
 
@@ -66,7 +65,7 @@ extension ListwithPosterVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
-        
+
         if indexPath.section == 0 {
             // 0. section Movies için, movieViewModel'i geçiriyoruz
             cell.configure(with: movieViewModel, tvSeriesViewModel: nil)

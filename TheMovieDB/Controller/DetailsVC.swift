@@ -22,7 +22,6 @@ final class DetailsVC: UIViewController {
         configureView()
         setupFavoriteButton()
         navigationController?.setNavigationBarHidden(false, animated: false)
-
     }
     
     private func setupFavoriteButton() {

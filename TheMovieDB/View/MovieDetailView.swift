@@ -12,8 +12,11 @@ import UIKit
 final class MovieDetailView: UIView {
     // MARK: - Properties
 
+    // ScrollView: İçerik uzun olduğunda kaydırma işlemi yapmak için kullanılır
     private let scrollView = UIScrollView()
+    // contentView: Tüm UI bileşenlerinin içinde bulunduğu ana view
     private let contentView = UIView()
+    
     private let titleLabel = UILabel()
     private let releaseDateLabel = UILabel()
     private let ratingLabel = UILabel()
@@ -29,7 +32,7 @@ final class MovieDetailView: UIView {
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
+        imageView.clipsToBounds = true // Görüntünün kenarları taşmaması için kullanıldı
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -43,31 +46,32 @@ final class MovieDetailView: UIView {
         setupUI()
     }
     
-    @available(*, unavailable)
+    @available(*, unavailable) // bu satir alttaki fonksiyonu devre disi birakmaya yariyor. * butun platformlari ifade ediyor.
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - ScrollView Setup
-       private func setupScrollView() {
-           addSubview(scrollView)
-           scrollView.addSubview(contentView)
-           scrollView.translatesAutoresizingMaskIntoConstraints = false
-           contentView.translatesAutoresizingMaskIntoConstraints = false
+
+    private func setupScrollView() {
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
            
-           NSLayoutConstraint.activate([
-               scrollView.topAnchor.constraint(equalTo: self.topAnchor),
-               scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-               scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-               scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
                
-               contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-               contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-               contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-               contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-               contentView.widthAnchor.constraint(equalTo: self.widthAnchor)
-           ])
-       }
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: widthAnchor)
+        ])
+    }
     
     // MARK: - UI Setup
 
@@ -119,6 +123,7 @@ final class MovieDetailView: UIView {
     
     // MARK: - Configure
 
+    // ViewModel'den alınan verilerle UI bileşenlerini güncelleyen fonksiyon
     public func configure(with viewModel: DetailViewModel) {
         titleLabel.text = viewModel.movietitle
         originalLanguageLabel.text = viewModel.movieoriginalLanguage

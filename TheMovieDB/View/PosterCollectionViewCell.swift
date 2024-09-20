@@ -8,7 +8,6 @@
 import UIKit
 
 class PosterCollectionViewCell: UICollectionViewCell {
-    
     static let identifier = "PosterCollectionViewCell"
     
     private let posterImageView: UIImageView = {
@@ -39,17 +38,17 @@ class PosterCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Configure
 
+    // Hücreyi ViewModel ile yapılandıran fonksiyon
     public func configure(with viewModel: DetailViewModel) {
-
         // Posteri URL'den yüklemek için bir fonksiyon çağırıyoruz
-        if let posterPath = viewModel.tvposterPath ?? viewModel.movieposterPath{
+        if let posterPath = viewModel.tvposterPath ?? viewModel.movieposterPath {
             loadImage(from: "https://image.tmdb.org/t/p/w500\(posterPath)")
         }
     }
@@ -67,7 +66,6 @@ class PosterCollectionViewCell: UICollectionViewCell {
         task.resume()
     }
 }
-
 
 // Hücre boyutunu ayarlıyoruz (120 genişlik, 200 yükseklik)
 func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
