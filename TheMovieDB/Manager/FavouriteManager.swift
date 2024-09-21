@@ -25,6 +25,7 @@ final class FavouriteManager {
     // Favori ekleme fonksiyonu
     func addToFavourites(mediaType: String, mediaId: Int, completion: @escaping (Bool) -> Void) {
         let request = NetworkRouter.AddFavoriteRequest(mediaType: mediaType, mediaId: mediaId, favorite: true)
+        // API isteği Combine ile yapılıyor
         NetworkClient.dispatch(request)
             .sink { completionResult in
                 switch completionResult {
@@ -43,12 +44,12 @@ final class FavouriteManager {
                     completion(false)
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellables) // Combine işlemi tamamlandığında veya iptal edilmesi gerektiğinde tutulacak
     }
     
     // Favoriden çıkarma fonksiyonu
     func removeFromFavourites(mediaType: String, mediaId: Int, completion: @escaping (Bool) -> Void) {
-        let request = NetworkRouter.AddFavoriteRequest(mediaType: mediaType, mediaId: mediaId, favorite: false)
+        let request = NetworkRouter.AddFavoriteRequest(mediaType: mediaType, mediaId: mediaId, favorite: false) //AddFavoriteRequest i kullanirken favorite yi false yapinca ayni function i remove icin kullanmis olduk.
         NetworkClient.dispatch(request)
             .sink { completionResult in
                 switch completionResult {

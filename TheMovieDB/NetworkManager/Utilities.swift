@@ -21,8 +21,8 @@ var ENV: ApiKeyable {
 
 /// ApiKeyable protokolü, API ile ilgili anahtar bilgilerini almak için bir şablon oluşturur.
 protocol ApiKeyable {
-    var API_KEY: String { get } // API anahtarını almak için bir özellik
-    var API_HOST: String { get } // API hostunu almak için bir özellik
+    var API_KEY: String { get }
+    var API_HOST: String { get }
     var SESSION_ID: String { get }
     var ACCOUNT_ID: String { get }
 }

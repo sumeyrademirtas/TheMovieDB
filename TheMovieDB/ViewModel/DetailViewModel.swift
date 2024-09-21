@@ -5,6 +5,7 @@
 //  Created by Sümeyra Demirtaş on 10.09.2024.
 //
 
+// Bu dosyayi bu sekilde yaptigim icin pismanim. Bolsem daha iyi olabilirdi. Cok ugrastirdi sonrasinda.
 import Foundation
 
 struct DetailViewModel {

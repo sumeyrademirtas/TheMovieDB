@@ -95,15 +95,4 @@ class NetworkRouter {
     }
 }
 
-// you can add a new struct for each request now
-//    struct createPost: NetworkRequest {
-//        typealias ReturnType = ResponseModel
-//        var path: String = "/posts"
-//        var method: HttpMethod = .post
-//        var body: [String : Any]?
-//
-//        init(body: RequestModel) {
-//            self.body = body.asDictionary
-//        }
-//    }
-// }
+
